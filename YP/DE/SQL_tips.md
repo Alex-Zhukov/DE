@@ -12,3 +12,12 @@ FROM './clients.csv'
 DELIMITER ','
 CSV HEADER;
 ```
+
+```SQL
+Проверка таблицы
+SELECT *
+FROM pg_catalog.pg_tables
+WHERE schemaname = 'public'
+    AND tablename = 'your_table_name';
+    
+```

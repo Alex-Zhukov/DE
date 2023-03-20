@@ -21,3 +21,13 @@ WHERE schemaname = 'public'
     AND tablename = 'your_table_name';
     
 ```
+
+Нейминг таблиц:
+
+Для хранения инфо об источниках, лучше создать справочник. Нейминг - код системы источника + слой данных + название сущности
+
+Например 001_BUFF_Client, 002_DM_Clients
+
+Нейминг ограничений:
+
+{tablename}_{columnname(s)}_{suffix}

@@ -1,0 +1,3 @@
+docker run --rm -d -v C:\Users\aszhu\DE\YP\DE\2_sprint:/lessons -p 3000:3000 -p 15432:5432 --name=de-sprint-2-server-local sindb/sprint-2:latest
+
+docker run --rm -d -v sprint2:/lessons -p 3000:3000 -p 15432:5432 --name de-sprint-2-server-local sindb/sprint-2:latest

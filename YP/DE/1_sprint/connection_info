@@ -1,1 +1,3 @@
+docker run --rm -d -v sprint1:/lessons -p 7010:8000 --name de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest
+
 {'student_id': 'alexander-zhukov', 'student_db_connection': {'host': 'rc1b-ibh8zlbmuynmtr4i.mdb.yandexcloud.net', 'port': 6432, 'dbname': 'playground_alexanderzhukov', 'user': 'de_alexanderzhukov', 'password': '7d92e0e7d75541bdaaf28782cce1bd2d'}, 'secret_key': '2d7342e3b96c6119377fec61', 'message': 'База данных создана. Ваш секретный ключ: 2d7342e3b96c6119377fec61'}

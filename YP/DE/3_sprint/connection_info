@@ -1,0 +1,1 @@
+docker run -d --rm -v sprint3:/lessons -p 3000:3000 -p 15432:5432 --name=de-sprint-3-server-local sindb/sprint-3:latest

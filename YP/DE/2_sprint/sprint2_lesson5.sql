@@ -32,3 +32,12 @@ FROM
    FROM attributes_table_old) AS d_first_properties_information;
 
 DROP SEQUENCE d_first_properties_sequence;
+
+select 
+*
+from my_table mt 
+
+
+ALTER TABLE my_table ADD COLUMN new_column varchar(30);
+
+ALTER TABLE my_table ADD COLUMN old_column_temp varchar(30);

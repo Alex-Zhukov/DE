@@ -4,10 +4,38 @@ DROP TABLE IF EXISTS public.f_sales;
 DROP TABLE IF EXISTS public.d_clients;
 DROP TABLE IF EXISTS public.d_buckets;
 DROP TABLE IF EXISTS public.d_orders;
--- drop d_products;
--- drop d_vendors;
--- drop d_categories;
+drop table if exists d_products;
+drop table if exists d_categories;
+drop table if exists d_vendors;
 
+create table d_products (
+	product_id int primary key,
+	category_id BIGINT,
+	vendor_id BIGINT,
+	name_product text,
+	description text,
+	stock bool
+);
+
+create table d_categories(
+	category_id BIGINT primary key,
+	name_category text,
+	description text
+);
+
+create table d_vendors(
+	id SERIAL,
+	vendor_id bigint primary key,
+	name_vendor text,
+	description text
+);
+
+alter table d_products 
+	add constraint fk_products_vendors foreign key (vendor_id) references d_vendors(vendor_id);
+
+alter table d_products 
+	add constraint fk_products_categories foreign key (category_id) references d_categories(category_id);
+	
 --d_clients
 CREATE TABLE public.d_clients(
    client_id    BIGINT ,

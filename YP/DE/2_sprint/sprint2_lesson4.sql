@@ -10,7 +10,7 @@ drop table if exists d_categories;
 drop table if exists d_vendors;
 
 create table d_products (
-	product_id serial primary key,
+	product_id int primary key,
 	category_id BIGINT,
 	vendor_id BIGINT,
 	name_product text,

@@ -3,3 +3,13 @@ docker run --rm -d -v sprint1:/lessons -p 7010:8000 --name de-sprint-1-server-lo
 
 
 ```
+
+Копирование файла:
+```bash
+docker ps 
+
+# команда копирования файла с локального компьютера в контейнер в нужную папку
+docker cp /path/to/our_file/titanic_dag.py [CONTAINER ID]:/lessons/dags/titanic_dag.py
+
+
+```

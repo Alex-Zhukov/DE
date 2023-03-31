@@ -1,5 +1,12 @@
 connections:
 HTTP create_files_api d5dg1j9kt695d30blp03.apigw.yandexcloud.net
 
+S3
+aws_access_key_id = YCAJEWXOyY8Bmyk2eJL-hlt2K,
+aws_secret_access_key = YCPs52ajb2jNXxOUsL4-pFDL1HnV2BCPd928_ZoA.
+
+Если полей нет:
+{"aws_access_key_id":"YCAJEWXOyY8Bmyk2eJL-hlt2K", "aws_secret_access_key": "YCPs52ajb2jNXxOUsL4-pFDL1HnV2BCPd928_ZoA"}
+
 
 docker cp C:\Users\aszhu\DE\YP\DE\3_sprint\final\01_create_api_file.py 8999e06fe55a:/lessons/dags/01_create_api_file.py

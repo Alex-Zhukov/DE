@@ -1,10 +1,13 @@
 import datetime as dt
+import requests
+import time
+import pandas as pd
+
 from airflow.hooks.base_hook import BaseHook
 from airflow.models import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
-import requests
-import time
+from airflow.models import TaskInstance
 
 api_host = BaseHook.get_connection("create_files_api").host
 business_dt = {'dt': '2022-05-06'}
@@ -25,7 +28,17 @@ def create_files_request(**kwargs):
         headers=kwargs['headers']
     ).json()
     task_id = generate_report_response["task_id"]
-    return task_id
+    kwargs['ti'].xcom_push(value=task_id, key='task_id')
+
+
+def upload_from_s3(file_names, **kwargs):
+    task_id = kwargs['ti'].xcom_pull(task_ids="generate_files", key='task_id')
+    conn_s3 = BaseHook.get_connection("conn_s3")
+    url = "https://storage.yandexcloud.net/s3-sprint3-static/lessons/"
+    target_path = "/lessons/5. Реализация ETL в Airflow/4. Extract как подключиться к хранилищу, чтобы получить файл/Задание 2/"
+    for file_name in file_names:
+        df = pd.read_csv(url + file_name)
+        df.to_csv(target_path + file_name)
 
 
 args = {
@@ -34,9 +47,9 @@ args = {
 }
 
 dag = DAG(
-    dag_id='epicDag',  # Имя DAG
-    schedule_interval=None,  # Периодичность запуска, например, "00 15 * * *"
-    default_args=args,  # Базовые аргументы
+    dag_id='epicDag',
+    schedule_interval=None,
+    default_args=args
 )
 
 generate_files = PythonOperator(
@@ -46,15 +59,19 @@ generate_files = PythonOperator(
     dag=dag,
 )
 
-bash_10s = BashOperator(
+generation_wait = BashOperator(
     task_id="delay_bash_task",
-    bash_command='sleep 10',
+    bash_command='sleep 2',
     dag=dag)
 
-python_10s = PythonOperator(
-    task_id="delay_python_task",
-    python_callable=lambda _: time.sleep(10),
+upload_to_local = PythonOperator(
+    task_id="upload_from_s3",
+    python_callable=upload_from_s3,
+    op_kwargs={'file_names': ['customer_research.csv',
+                              'user_activity_log.csv',
+                              'user_order_log.csv']},
+    provide_context=True,
     dag=dag
 )
 
-generate_files >> bash_10s >> python_10s
+generate_files >> generation_wait >> upload_to_local

@@ -1,0 +1,5 @@
+connections:
+HTTP create_files_api d5dg1j9kt695d30blp03.apigw.yandexcloud.net
+
+
+docker cp C:\Users\aszhu\DE\YP\DE\3_sprint\final\01_create_api_file.py 8999e06fe55a:/lessons/dags/01_create_api_file.py

@@ -2,9 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/BigData/hadoop/sber-hadoop2023-1" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/BigData/hadoop/zhukoval-mapreduce" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/BigData/hadoop/zhukoval-sberhive" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/BigData/hadoop/zhukoval-sberspark" vcs="Git" />
   </component>
 </project>

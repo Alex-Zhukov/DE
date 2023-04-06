@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 
 
 def choose_plural(amount: int, declensions: tuple) -> str:
@@ -10,16 +10,24 @@ def choose_plural(amount: int, declensions: tuple) -> str:
         return f'{amount} {declensions[2]}'
 
 
+def hours_minutes(td):
+    return td.seconds // 3600, (td.seconds // 60) % 60
+
+
 def get_string_for_print(dt):
     result = []
+    hours, minutes = hours_minutes(dt)
     if dt.days != 0:
         result.append(choose_plural(dt.days, ("день", "дня", "дней")))
-    if dt.minutes!= 0:
-        result.append(choose_plural(dt.minutes, ("час", "часа", "часов")))
-    if dt.minutes != 0:
-        result.append(choose_plural(dt.minutes, ("минута", "минуты", "минут")))
+        if hours != 0:
+            result.append(choose_plural(hours, ("час", "часа", "часов")))
+    else:
+        if hours != 0:
+            result.append(choose_plural(hours, ("час", "часа", "часов")))
+        if minutes != 0:
+            result.append(choose_plural(minutes, ("минута", "минуты", "минут")))
 
-    return " ".join(result)
+    return " и ".join(result)
 
 
 planning_date = datetime(2022, 11, 8, 12, 0)
